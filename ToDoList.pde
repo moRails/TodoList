@@ -50,7 +50,7 @@ void setup()
 void draw()
 {
   background(255);
-  fill(255);
+  line (20, 90, 430, 90);
   for (int i = 0; i < taskList.size (); i++)
   {
     delBt.get(i).dessine();
