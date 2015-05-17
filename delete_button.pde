@@ -4,12 +4,12 @@ class DeleteButton
 {
   int posX, posY, index;
   boolean priority;
-  DeleteButton(int x, int y, int i)
+  DeleteButton(int x, int y, int i, boolean p)
   {
     posX = x;
     posY = y;
     index= i;
-    priority = false;
+    priority = p;
   }
 
   void dessine()
@@ -71,6 +71,11 @@ class DeleteButton
     {
        priority =! priority; 
     }
+  }
+  
+  boolean isItImportant()
+  {
+     return priority; 
   }
 }
 

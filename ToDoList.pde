@@ -34,13 +34,23 @@ void setup()
           ;
   //-- Init the task list with the previous tasks        
   String lines[] = loadStrings("todo.txt");
+  String imp[]   = loadStrings("important.txt");
   for (int i = 0; i < lines.length; i++)
   {
     String newTask;
     newTask = lines[i];
     taskList.append(newTask);
     int ind = taskList.size();
-    delBt.add(new DeleteButton(20, 100 + (ind * 20), ind));
+    boolean initImportant;
+    if(imp[i].equals("i"))
+    {
+       initImportant = true; 
+    }else
+    {
+      initImportant = false;
+    }
+    
+    delBt.add(new DeleteButton(20, 100 + (ind * 20), ind, initImportant));
   }
   println(taskList.size());
   println("-------------------");
@@ -83,12 +93,27 @@ public void ADD() {
   taskList.append(newTask);
   println(taskList);
   int ind = taskList.size();
-  delBt.add(new DeleteButton(20, 100 + (ind * 20), ind));
+  delBt.add(new DeleteButton(20, 100 + (ind * 20), ind, false));
   cp5.get(Textfield.class, "new task").clear();
 }
 
 public void save()
 {
+  //-- Save the tasks
   String[] todoSave = taskList.array();
   saveStrings("todo.txt", todoSave);
+  //-- Save if the task is important
+  int sizeOftaskList = taskList.size(); 
+  String[] important = new String[sizeOftaskList];
+  for (int i = 0; i < sizeOftaskList; i++)
+  {
+      if(delBt.get(i).isItImportant())
+      {
+        important[i] = "i";
+      }else
+      {
+        important[i] = "n";
+      }
+  }
+  saveStrings("important.txt",important);
 }
