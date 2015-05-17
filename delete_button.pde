@@ -3,11 +3,13 @@
 class DeleteButton
 {
   int posX, posY, index;
+  boolean priority;
   DeleteButton(int x, int y, int i)
   {
     posX = x;
     posY = y;
     index= i;
+    priority = false;
   }
 
   void dessine()
@@ -20,6 +22,7 @@ class DeleteButton
       fill(100);
     }
     rect(posX, posY, 10, 10);
+    priorityCheck();
   }
 
   int getIndex()
@@ -44,6 +47,29 @@ class DeleteButton
     } else
     {
       return false;
+    }
+  }
+  
+  void priorityCheck()
+  {  
+      pushStyle();
+      noStroke();
+      if(priority)
+      {
+         fill(0, 200, 0); 
+      }else
+      {
+         fill(255); 
+      }
+      ellipse(posX - 12, posY + 5, 10, 10);
+      popStyle();
+  }
+  
+  void isInsidePriority()
+  {
+    if(dist(mouseX, mouseY, posX-12, posY + 5) < 10)
+    {
+       priority =! priority; 
     }
   }
 }

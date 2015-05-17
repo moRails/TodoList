@@ -62,6 +62,7 @@ void mousePressed()
 {
   for (int i = 0; i < delBt.size (); i++)
   {
+    delBt.get(i).isInsidePriority();
     if ( delBt.get(i).isInside())
     {
       delBt.remove(i);
