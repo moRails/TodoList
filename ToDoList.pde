@@ -1,5 +1,3 @@
-// made by Mocatz© 2015
-
 import controlP5.*;
 ControlP5 cp5;
 
@@ -30,7 +28,7 @@ void setup()
           ;
 
   cp5.addBang("save")
-    .setPosition(400, 20)
+    .setPosition(390, 20)
       .setSize(40, 40)
         .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
           ;
@@ -42,7 +40,7 @@ void setup()
     newTask = lines[i];
     taskList.append(newTask);
     int ind = taskList.size();
-    delBt.add(new DeleteButton(5, 175 + (ind * 20), ind));
+    delBt.add(new DeleteButton(20, 100 + (ind * 20), ind));
   }
   println(taskList.size());
   println("-------------------");
@@ -56,7 +54,7 @@ void draw()
   for (int i = 0; i < taskList.size (); i++)
   {
     delBt.get(i).dessine();
-    text(taskList.get(i), 20, 200 + (i *20));
+    text(taskList.get(i), 40, 130 + (i *20));
   }
 }
 
@@ -71,7 +69,7 @@ void mousePressed()
       {
         delBt.get(j).setIndex();
         int newIndex = delBt.get(j).getIndex();
-        delBt.get(j).setPosY(175 + ( newIndex * 20));
+        delBt.get(j).setPosY(100 + ( newIndex * 20));
       }
       taskList.remove(i);
     }
@@ -84,7 +82,7 @@ public void ADD() {
   taskList.append(newTask);
   println(taskList);
   int ind = taskList.size();
-  delBt.add(new DeleteButton(5, 175 + (ind * 20), ind));
+  delBt.add(new DeleteButton(20, 100 + (ind * 20), ind));
   cp5.get(Textfield.class, "new task").clear();
 }
 
@@ -93,4 +91,3 @@ public void save()
   String[] todoSave = taskList.array();
   saveStrings("todo.txt", todoSave);
 }
-
